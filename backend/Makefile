@@ -4,3 +4,7 @@ include .env
 
 run:
 	node server.js
+up:
+	docker compose up --build
+down:
+	docker compose down
