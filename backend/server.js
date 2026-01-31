@@ -3,20 +3,26 @@
  */
 const cors = require('cors');
 const express = require('express');
-const pool = require('./db'); // Shared PostgreSQL connection pool
+const poolPromise = require('./db'); // Shared PostgreSQL connection pool
 
 /**
  * Initialize Express application
  */
+
 const app = express();
 const port = 3000;
-
+let pool;
 /**
  * Middleware
  * - Parse incoming JSON payloads
  */
 app.use(express.json());
 app.use(cors());
+
+
+(async () => {
+  pool = await poolPromise;
+})();
 
 
 /**
